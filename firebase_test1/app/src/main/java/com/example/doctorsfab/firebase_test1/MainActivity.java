@@ -15,22 +15,20 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String tag = MainActivity.class.getSimpleName();
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mDatabase.child("cgj");
     DatabaseReference mConditionRef2 = mDatabase.child("data2");
 
-
     TextView textView;
     TextView textView2;
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         mAuth = FirebaseAuth.getInstance();
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -43,12 +41,10 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.getValue(String.class);
                 textView.setText(name);
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -61,18 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
     }
-
 
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
     }
 }
